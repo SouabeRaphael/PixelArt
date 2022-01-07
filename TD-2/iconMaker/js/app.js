@@ -19,8 +19,7 @@
 function creatGrid(){
     let div = ('<div class="pixel"></div>');
     let screen = $('.app-screen');
-    screen.append(div.repeat(1024));
-    
+    screen.append(div.repeat(1024));   
 }
 
 // @@@
@@ -93,7 +92,26 @@ function clickPixel(){
         })
     })
 }
-    
+
+function dblClick(){
+    let color = $('#paint_darkestgreen').css('background-color');
+
+    let pixel = $('.pixel');
+    pixel.dblclick (function(){
+        $(this).css('background', 'none');
+    })
+}
+
+
+
+function btnRemove(){
+    let reset = $('#reset');
+    let allDiv = $('.app-screen').children();
+    console.log(allDiv)
+    reset.click(function(){
+        allDiv.css('background', 'none');
+    }) 
+}
 
 
 
@@ -105,4 +123,6 @@ function clickPixel(){
 $(function(){
     creatGrid();
     clickPixel();
+    btnRemove();
+    dblClick();
 })
