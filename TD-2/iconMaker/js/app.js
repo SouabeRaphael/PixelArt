@@ -2,16 +2,6 @@
 // Votre code ici
 // -----------------------------------------------------------
 
-
-// function creatGrid(){
-//     let screen = $('.app-screen').append('<div class="pixel"></div>'.repeat(1024));
-//     let pixel = $('.pixel');
-//     pixel.click(function(){
-//         $(this).css("background", "red")
-//     })
-    
-// }
-
 // @@@
 // fonction qui crée les div pixel
 // @@@
@@ -19,7 +9,10 @@
 function creatGrid(){
     let div = ('<div class="pixel"></div>');
     let screen = $('.app-screen');
-    screen.append(div.repeat(1024));   
+    screen.append(div.repeat(1696));
+    // for (let i = 0; i < 1696; i++){
+    //     screen.append(div);
+    // }   
 }
 
 // @@@
@@ -44,6 +37,7 @@ function clickPixel(){
         let color = $('#paint_darkestgreen').css('background-color');
         pixel.click(function(){
             $(this).css("background", color);
+            // $(this).addClass('bg_darkestgreen');
         })
     })
 
@@ -93,36 +87,82 @@ function clickPixel(){
     })
 }
 
-function dblClick(){
-    let color = $('#paint_darkestgreen').css('background-color');
+// @@@
+// fonction qui supprimer la couleur de pixel au double click
+// @@@
 
+function dblClick(){
     let pixel = $('.pixel');
     pixel.dblclick (function(){
         $(this).css('background', 'none');
+        // $(this).removeClass();
     })
 }
 
-
+// @@@
+// fonction qui supprime la couleur de tout les pixels de la page
+// @@@
 
 function btnRemove(){
     let reset = $('#reset');
     let allDiv = $('.app-screen').children();
-    console.log(allDiv)
+    // console.log(allDiv)
     reset.click(function(){
         allDiv.css('background', 'none');
     }) 
 }
 
+// @@@
+// fonction qui exporte et enregistre le pixel-art
+// @@@
+
+function btnExport(){
+    let exp = $('#export');
+    exp.click(function(){
+        domtoimage.toJpeg(document.getElementById('content'))
+        .then(function(dataUrl){
+            let link = document.createElement('a');
+            link.download = 'image.jpeg';
+            link.href = dataUrl;
+            link.click();
+        })
+    })
+}
+
+
+// @@@
+// fonction qui agrandi l'écran du pixel art
+// @@@
+
+// petit problème sur le reset des color quand on agrandi l'écran
+
+function largeScreen(){
+    let btntest = $('#large-screen');
+    let div = ('<div class="pixel"></div>');
+    let screen = $('.app-screen');
+    btntest.click(function(){
+        screen.css({
+            'height': '80vmin',
+            'width': '130vmin',
+            'display': 'grid',
+            'grid-template-columns': 'repeat(63, 2vmin)',
+            'grid-template-rows': 'repeat(40, 2vmin)',
+        });   
+        screen.append(div.repeat(824));
+    })
+}
 
 
 
-
-
-
+// @@@
+// appel de tout les fonctions
+// @@@
 
 $(function(){
     creatGrid();
     clickPixel();
     btnRemove();
     dblClick();
+    btnExport();
+    largeScreen();
 })

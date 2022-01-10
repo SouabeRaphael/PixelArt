@@ -13,6 +13,7 @@ h1 {
     text-align: center;
     color: #e0f8d0;
     margin-bottom: 2vmin;
+    margin-top: 50px;
 }
 /* -----------------------------------------------------------
 Palette de couleur
@@ -37,19 +38,21 @@ Palette de couleur
 .app-wrapper {
     width: 64vmin;
     margin: 5vmin auto 0;
+    display: flex;
+    justify-content: center;
 }
 .app-screen {
     height: 64vmin;
-    width: 64vmin;
+    width: 106vmin;
     display: grid;
-    grid-template-columns: repeat(32, 2vmin);
+    grid-template-columns: repeat(53, 2vmin);
     grid-template-rows: repeat(32, 2vmin);
     background: #fff;
     box-shadow: 0 0 50px rgba(0,0,0,0.2);
 }
 .pixel {
     border: 1px solid transparent;
-    cursor: crosshair;
+    cursor: pointer;
     transition: border 100ms ease-in-out;
 }
 .pixel:hover {
@@ -57,17 +60,18 @@ Palette de couleur
 }
 .colorset-name {
     color: #fff;
-    font-size: 8px;
+    font-size: 12px;
     margin: 2vmin 0 0;
     text-align: center;
 }
 .app-tools {
     color: #fff;
-    display: flex;
+    display: flex;flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 8px;
     margin-top: 2vmin;
+    margin-left: 20px;
 }
 .app-tools .swatch {
     height: 4vmin;
@@ -76,26 +80,29 @@ Palette de couleur
     border-radius: 0;
     cursor: pointer;
     display: block;
-    margin: 0 1vmin;
+    margin: 12px 1vmin;
+    border-radius: 20px;
 }
 .app-tools .swatch.is-active {
     border: 2px solid #fff;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 .app-tools .reset,
-.app-tools .export {
+.app-tools .export,
+.app-tools .large-screen {
     height: 4vmin;
     background: #000;
     color: #fff;
     border: 0 none;
-    border-radius: 3px;
+    border-radius: 20px;
     cursor: pointer;
     display: inline-block;
     font-family: 'Press Start 2P', cursive;
     font-size: 8px;
-    margin: 0 1vmin;
-    padding: 0 1vmin;
+    margin: 10px 1vmin;
+    padding: 0 2vmin;
     box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    line-height: 1rem;
 }
 
 #result {
